@@ -60,30 +60,35 @@ root = Tk()
 root.title("Python Text Editor")
 root.minsize(width=400, height=400)
 root.maxsize(width=800, height=800)
-FontSize = 10
+FontSize = 12
 Font_tuple = ("Times New Roman", FontSize)
-text = Text(root, width=400,height=400,font = Font_tuple)
+text = Text(root, width=400,height=400,font = Font_tuple, undo = True)
 text.pack()
 
 #Making the Menu Bar
 menubar = Menu(root)
 filemenu = Menu(menubar)
 helpmenu = Menu(menubar)
-zoommenu = Menu(menubar)
+fontmenu = Menu(menubar)
+
+#FileMenu - New File, Save File, SaveAs, Open File
 filemenu.add_command(label="New File", command = newFile)
 filemenu.add_command(label="Save File", command = saveFile)
-filemenu.add_command(label="saveAs" , command = saveAs)
-filemenu.add_command(label="openFile" , command = openFile)
-
-zoommenu.add_command(label="FontChangeBigger", command = FontChangeBigger)
-zoommenu.add_command(label="FontChangeSmaller", command = FontChangeSmaller)
-
-helpmenu.add_command(label="Help", command=HelpGitHubLink)
+filemenu.add_command(label="Save As" , command = saveAs)
+filemenu.add_command(label="Open File" , command = openFile)
 filemenu.add_separator()
 filemenu.add_command(label="Quit", command=root.quit)
+
+#Zoom Menu - Changing the Font
+fontmenu.add_command(label="Increase Font", command = FontChangeBigger)
+fontmenu.add_command(label="Decrease Font", command = FontChangeSmaller)
+
+#Help Menu - Click it to go to Github Link
+helpmenu.add_command(label="Help", command=HelpGitHubLink)
+
 menubar.add_cascade(label="File",menu =filemenu)
 menubar.add_cascade(label="Help",menu=helpmenu)
-menubar.add_cascade(label="Zoom",menu=zoommenu)
+menubar.add_cascade(label="Font",menu=fontmenu)
 
 root.config(menu=menubar)
 root.mainloop()
